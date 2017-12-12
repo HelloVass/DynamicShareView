@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		tools:background="@android:color/background_dark"
+		>
+
+	<ImageView
+			android:id="@+id/iv_image"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="centerCrop"
+			/>
+
+	<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerInParent="true"
+			android:gravity="center"
+			android:orientation="vertical"
+			android:visibility="gone"
+			>
+
+		<ImageView
+				android:id="@+id/iv_icon"
+				android:layout_width="48dp"
+				android:layout_height="48dp"
+				tools:src="@mipmap/osl_ui_widgets_shareview_qrcode"
+				/>
+
+		<android.support.v4.widget.Space
+				android:layout_width="wrap_content"
+				android:layout_height="17dp"
+				/>
+
+		<TextView
+				android:id="@+id/tv_title"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:textColor="#ffffff"
+				android:textSize="15sp"
+				tools:text="扫描识别二维码\n查看 Ta 的更多作品"
+				/>
+
+	</LinearLayout>
+
+</RelativeLayout>
