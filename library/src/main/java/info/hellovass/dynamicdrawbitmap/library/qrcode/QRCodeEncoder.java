@@ -47,7 +47,6 @@ public final class QRCodeEncoder {
     if (encoding != null) {
       hints = new EnumMap<>(EncodeHintType.class);
       hints.put(EncodeHintType.CHARACTER_SET, encoding);
-      hints.put(EncodeHintType.MARGIN, 1);
     }
     BitMatrix result;
     try {

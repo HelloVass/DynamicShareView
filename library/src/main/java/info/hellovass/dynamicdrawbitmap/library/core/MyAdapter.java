@@ -1,5 +1,6 @@
-package info.hellovass.dynamicdrawbitmap.library.utils;
+package info.hellovass.dynamicdrawbitmap.library.core;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -12,10 +13,13 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.google.zxing.WriterException;
 import info.hellovass.dynamicdrawbitmap.library.R;
-import info.hellovass.dynamicdrawbitmap.library.core.Adapter;
 import info.hellovass.dynamicdrawbitmap.library.entity.Bottom;
+import info.hellovass.dynamicdrawbitmap.library.entity.Image;
 import info.hellovass.dynamicdrawbitmap.library.qrcode.QRCodeEncoder;
+import info.hellovass.dynamicdrawbitmap.library.utils.DensityUtil;
+import java.util.ArrayList;
 import java.util.List;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 /**
  * Created by hello on 2017/12/11.
@@ -23,7 +27,9 @@ import java.util.List;
 
 public class MyAdapter implements Adapter {
 
-  private List<String> mImages;
+  private Context mContext;
+
+  private List<Image> mImages;
 
   private Bottom mBottom;
 
@@ -31,9 +37,10 @@ public class MyAdapter implements Adapter {
 
   private int mLoadedImageCount = 0;
 
-  public MyAdapter(List<String> images, @NonNull Bottom bottom,
+  public MyAdapter(@NonNull Context context, List<Image> images, @NonNull Bottom bottom,
       @NonNull OnImageLoadedListener onImageLoadedListener) {
-    mImages = images;
+    mContext = context;
+    mImages = images == null ? new ArrayList<Image>() : images;
     mBottom = bottom;
     mOnImageLoadedListener = onImageLoadedListener;
   }
@@ -43,52 +50,84 @@ public class MyAdapter implements Adapter {
     return mImages.size();
   }
 
+  private Image getCover(int position) {
+
+    return mImages.get(position);
+  }
+
   @Override public View getImage(ViewGroup viewGroup, int position) {
 
-    final View view = LayoutInflater.from(viewGroup.getContext())
+    final View view = LayoutInflater.from(mContext)
         .inflate(R.layout.osl_ui_widgets_shareview_imageview_wrapper, viewGroup, false);
 
-    Glide.with(view.getContext())
-        .load(mImages.get(position))
-        .asBitmap()
-        .into(new SimpleTarget<Bitmap>() {
+    final View moreInfo = view.findViewById(R.id.ll_moreinfo_wrapper);
+    final ImageView ivCover = view.findViewById(R.id.iv_image);
 
-          @Override public void onResourceReady(Bitmap resource,
-              GlideAnimation<? super Bitmap> glideAnimation) {
+    // 付费图需要做高斯模糊处理
+    final boolean needBlur = !getCover(position).isFree();
 
-            ImageView ivImage = view.findViewById(R.id.iv_image);
-            ivImage.setImageBitmap(resource);
-            mLoadedImageCount++;
+    if (needBlur) { // 如果需要高斯模糊处理
 
-            if (mLoadedImageCount == getCoverCount() + 1) {
-              mOnImageLoadedListener.onImageLoaded();
+      Glide.with(viewGroup.getContext())
+          .load(mImages.get(position).getImageUrl())
+          .asBitmap()
+          .transform(new BlurTransformation(viewGroup.getContext(), 14, 3))
+          .into(new SimpleTarget<Bitmap>() {
+            @Override public void onResourceReady(Bitmap bitmap,
+                GlideAnimation<? super Bitmap> glideAnimation) {
+
+              ivCover.setImageBitmap(bitmap);
+              mLoadedImageCount++;
+
+              if (mLoadedImageCount == getCoverCount() + 1) {
+                mOnImageLoadedListener.onImageLoaded();
+              }
             }
-          }
-        });
+          });
+    } else {
+
+      Glide.with(viewGroup.getContext())
+          .load(mImages.get(position).getImageUrl())
+          .asBitmap()
+          .into(new SimpleTarget<Bitmap>() {
+            @Override public void onResourceReady(Bitmap bitmap,
+                GlideAnimation<? super Bitmap> glideAnimation) {
+
+              ivCover.setImageBitmap(bitmap);
+              mLoadedImageCount++;
+
+              if (mLoadedImageCount == getCoverCount() + 1) {
+                mOnImageLoadedListener.onImageLoaded();
+              }
+            }
+          });
+    }
+
+
+    moreInfo.setVisibility(!mImages.get(position).isFree() ? View.VISIBLE : View.GONE);
 
     return view;
   }
 
   @Override public View getBottom(ViewGroup viewGroup) {
 
-    final View view = LayoutInflater.from(viewGroup.getContext())
+    final View view = LayoutInflater.from(mContext)
         .inflate(R.layout.osl_ui_widgets_shareview_bottom_part, viewGroup, false);
 
     TextView tvTitle = view.findViewById(R.id.tv_title);
     tvTitle.setText(mBottom.getTitle());
 
+    final ImageView ivAvatar = view.findViewById(R.id.iv_avatar);
+
     Glide.with(viewGroup.getContext())
         .load(mBottom.getAvatarUrl())
         .asBitmap()
         .into(new SimpleTarget<Bitmap>() {
-
           @Override public void onResourceReady(Bitmap resource,
               GlideAnimation<? super Bitmap> glideAnimation) {
 
-            ImageView ivAvatar = view.findViewById(R.id.iv_avatar);
             ivAvatar.setImageBitmap(resource);
             mLoadedImageCount++;
-
             if (mLoadedImageCount == getCoverCount() + 1) {
               mOnImageLoadedListener.onImageLoaded();
             }

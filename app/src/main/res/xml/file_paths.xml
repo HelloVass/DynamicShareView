@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<paths>
+<resources>
 
-	<cache-path
-			name="share_image"
-			path=""/>
+	<paths>
+		<cache-path
+				name="share_image"
+				path=""/>
+	</paths>
 
-</paths>
+</resources>

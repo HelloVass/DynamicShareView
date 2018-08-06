@@ -1,4 +1,4 @@
-package info.hellovass.dynamicdrawbitmap.library.core.rule;
+package info.hellovass.dynamicdrawbitmap.library.rule;
 
 import android.content.Context;
 import android.view.View;
@@ -7,21 +7,21 @@ import android.view.View;
  * Created by hello on 2017/12/8.
  */
 
-public class BottomRule extends AbsRule {
+public class Rule1Impl extends AbsRule {
 
-  public BottomRule(Context context) {
+  public Rule1Impl(Context context) {
     super(context);
   }
 
   @Override
   public void measureChildren(int screenWidth, int screenHeight, int spacing, View... children) {
 
-    measureManually(children[0], screenWidth, screenHeight - screenWidth);
+    measureManually1(children[0], screenWidth, screenWidth);
   }
 
   @Override
   public void layoutChildren(int screenWidth, int screenHeight, int spacing, View... children) {
 
-    children[0].layout(0, screenWidth, screenWidth, screenHeight);
+    children[0].layout(0, 0, screenWidth, screenWidth);
   }
 }

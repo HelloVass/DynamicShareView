@@ -7,12 +7,12 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
-import info.hellovass.dynamicdrawbitmap.library.core.rule.BottomRule;
-import info.hellovass.dynamicdrawbitmap.library.core.rule.Rule;
-import info.hellovass.dynamicdrawbitmap.library.core.rule.Rule1Impl;
-import info.hellovass.dynamicdrawbitmap.library.core.rule.Rule2Impl;
-import info.hellovass.dynamicdrawbitmap.library.core.rule.Rule3Impl;
-import info.hellovass.dynamicdrawbitmap.library.core.rule.Rule4Impl;
+import info.hellovass.dynamicdrawbitmap.library.rule.BottomRule;
+import info.hellovass.dynamicdrawbitmap.library.rule.Rule;
+import info.hellovass.dynamicdrawbitmap.library.rule.Rule1Impl;
+import info.hellovass.dynamicdrawbitmap.library.rule.Rule2Impl;
+import info.hellovass.dynamicdrawbitmap.library.rule.Rule3Impl;
+import info.hellovass.dynamicdrawbitmap.library.rule.Rule4Impl;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,16 +85,18 @@ public class DynamicShareView extends ViewGroup {
     // 添加底部
     View bottomLayout = mAdapter.getBottom(this);
     mBottomLayout = bottomLayout;
-    addView(bottomLayout);
+    addView(bottomLayout, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-    mActualWidth = MeasureSpec.getSize(widthMeasureSpec);
-    mActualHeight = MeasureSpec.getSize(heightMeasureSpec);
+    int widthSize = MeasureSpec.getSize(widthMeasureSpec);
 
-    if (mImages == null || mImages.isEmpty()) return;
+    int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+    int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+    mActualWidth = widthSize; // 宽度等于屏幕宽度
 
     switch (mImages.size()) {
 
@@ -118,8 +120,15 @@ public class DynamicShareView extends ViewGroup {
         break;
     }
 
-    mBottomRule.measureChildren(mActualWidth, mActualHeight, mSpacing, mBottomLayout); // 测量底部
-    setMeasuredDimension(mActualWidth, mActualHeight);
+    // 测量底部高度
+    mBottomRule.measureChildren(mActualWidth, mActualHeight, mSpacing, mBottomLayout);
+
+    // 获得实际高度
+    mActualHeight = mActualWidth + mBottomLayout.getMeasuredHeight();
+
+    // 设置 ViewGroup 尺寸
+    setMeasuredDimension(mActualWidth,
+        heightMode == MeasureSpec.EXACTLY ? heightSize : mActualHeight);
   }
 
   @Override protected void onLayout(boolean changed, int l, int t, int r, int b) {

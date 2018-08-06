@@ -1,4 +1,4 @@
-package info.hellovass.dynamicdrawbitmap.library.core.rule;
+package info.hellovass.dynamicdrawbitmap.library.rule;
 
 import android.view.View;
 

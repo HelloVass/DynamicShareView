@@ -1,4 +1,4 @@
-package info.hellovass.dynamicdrawbitmap.library.core.rule;
+package info.hellovass.dynamicdrawbitmap.library.rule;
 
 import android.content.Context;
 import android.view.View;
@@ -16,9 +16,9 @@ public class Rule3Impl extends AbsRule {
   @Override
   public void measureChildren(int screenWidth, int screenHeight, int spacing, View... children) {
 
-    measureManually(children[0], (screenWidth - spacing) / 2, (screenWidth - spacing) / 2);
-    measureManually(children[1], (screenWidth - spacing) / 2, (screenWidth - spacing) / 2);
-    measureManually(children[2], screenWidth, (screenWidth - spacing) / 2);
+    measureManually1(children[0], (screenWidth - spacing) / 2, (screenWidth - spacing) / 2);
+    measureManually1(children[1], (screenWidth - spacing) / 2, (screenWidth - spacing) / 2);
+    measureManually1(children[2], screenWidth, (screenWidth - spacing) / 2);
   }
 
   @Override

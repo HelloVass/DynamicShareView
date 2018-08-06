@@ -14,19 +14,19 @@
 			/>
 
 	<LinearLayout
+			android:id="@+id/ll_moreinfo_wrapper"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_centerInParent="true"
 			android:gravity="center"
 			android:orientation="vertical"
-			android:visibility="gone"
 			>
 
 		<ImageView
 				android:id="@+id/iv_icon"
 				android:layout_width="48dp"
 				android:layout_height="48dp"
-				tools:src="@mipmap/osl_ui_widgets_shareview_qrcode"
+				android:src="@mipmap/osl_ui_widgets_shareview_qrcode"
 				/>
 
 		<android.support.v4.widget.Space
@@ -39,9 +39,9 @@
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:gravity="center"
+				android:text="扫描识别二维码\n查看 Ta 的更多作品"
 				android:textColor="#ffffff"
 				android:textSize="15sp"
-				tools:text="扫描识别二维码\n查看 Ta 的更多作品"
 				/>
 
 	</LinearLayout>

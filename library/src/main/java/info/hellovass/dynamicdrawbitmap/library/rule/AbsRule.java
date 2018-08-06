@@ -1,4 +1,4 @@
-package info.hellovass.dynamicdrawbitmap.library.core.rule;
+package info.hellovass.dynamicdrawbitmap.library.rule;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -23,10 +23,18 @@ public abstract class AbsRule implements Rule {
         mContext.getResources().getDisplayMetrics());
   }
 
-  protected void measureManually(View target, int widthSize, int heightSize) {
+  protected void measureManually1(View target, int widthSize, int heightSize) {
 
     int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
     int heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(heightSize, View.MeasureSpec.EXACTLY);
+    target.measure(widthMeasureSpec, heightMeasureSpec);
+  }
+
+  protected void measureManually2(View target, int widthSize) {
+
+    int widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(widthSize, View.MeasureSpec.EXACTLY);
+    int heightMeasureSpec =
+        View.MeasureSpec.makeMeasureSpec((1 << 30) - 1, View.MeasureSpec.AT_MOST);
     target.measure(widthMeasureSpec, heightMeasureSpec);
   }
 }

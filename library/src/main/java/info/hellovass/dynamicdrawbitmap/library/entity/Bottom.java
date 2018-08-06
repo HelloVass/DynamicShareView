@@ -1,7 +1,7 @@
-package info.hellovass.dynamicdrawbitmap.library.core;
+package info.hellovass.dynamicdrawbitmap.library.entity;
 
 /**
- * Created by hello on 2017/12/12.
+ * Created by hello on 2017/12/11.
  */
 
 public interface Bottom {
@@ -14,4 +14,3 @@ public interface Bottom {
 
   String getQRCodeUrl();
 }
-
