@@ -22,7 +22,7 @@ class FlexRenderDelegate(internal val context: Context) : RenderDelegate {
     internal val repo: IRepo = RepoImpl()
 
     companion object {
-        const val MAX_SIZE = 6
+        const val MAX_SIZE = 7
     }
 
     init {
@@ -60,7 +60,7 @@ class FlexRenderDelegate(internal val context: Context) : RenderDelegate {
 
     private fun addCovers() {
 
-        for (index in 0..coverCount) {
+        for (index in 0 until coverCount) {
             flexboxLayout.addView(ImageView(context))
         }
     }
