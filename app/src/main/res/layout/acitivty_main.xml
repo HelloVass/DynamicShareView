@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/ivTest"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="生成动态分享图" />
+        android:scaleType="fitXY" />
 
 </LinearLayout>

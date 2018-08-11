@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package info.hellovass.dynamicdrawbitmap.library.qrcode;
+package info.hellovass.dynamicdrawbitmap.library.ext;
 
 import android.graphics.Bitmap;
 
