@@ -8,10 +8,31 @@ internal val FlexRenderDelegate.coverCount: Int
         return Math.min(FlexRenderDelegate.MAX_SIZE, repo.covers().size)
     }
 
-internal val layout: IntArray
-    get() {
-        return intArrayOf(1, 3, 2, 1)
-    }
+internal val FlexRenderDelegate.layout: IntArray
+    get() =
+        when (coverCount) {
+            1 -> {
+                intArrayOf(1)
+            }
+            2 -> {
+                intArrayOf(1, 1)
+            }
+            3 -> {
+                intArrayOf(1, 2)
+            }
+            4 -> {
+                intArrayOf(1, 3)
+            }
+            5 -> {
+                intArrayOf(1, 3, 1)
+            }
+            6 -> {
+                intArrayOf(1, 3, 2)
+            }
+            else -> {
+                intArrayOf(1, 3, 2, 1)
+            }
+        }
 
 internal val FlexRenderDelegate.spacing: Int
     get() {
