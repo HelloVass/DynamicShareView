@@ -11,6 +11,18 @@
 - Glide（4.x版本），懒得介绍系列
 - [FlexboxLayout](https://github.com/google/flexbox-layout), 在 sample 用来实现不规则图片墙的效果
 
+# 使用
+```kotlin
+
+// 传入自己的渲染器即可，这里的 FlexRenderDelegate 是基于 FlexboxLayout 实现的渲染器
+        ShareViewImpl(this, FlexRenderDelegate(this))
+                .getLocalPath()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { localImagePath ->
+                    // TODO: 这里可以调用第三方分享SDK将本地生成好的图片文件分享出去
+                }
+```
+
 
 # 效果图
 > PS: 基于 FlexboxLayout 实现了一个不规则的照片墙，你也可以仿照 [FlexRenderDelegate](https://github.com/HelloVass/DynamicShareView/blob/master/library/src/main/java/info/hellovass/dynamicdrawbitmap/library/FlexRenderDelegate.kt)
