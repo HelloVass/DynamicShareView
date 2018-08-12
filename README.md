@@ -40,7 +40,7 @@
 ## 动态渲染 6 张图
 
 <p align="center">
-<img src="http://7xsq1h.com1.z0.glb.clouddn.com/%E5%8A%A8%E6%80%81%E6%B8%B2%E6%9F%934%E5%BC%A0%E5%9B%BE%E7%89%87%E6%97%B6%E5%80%99%E7%9A%84%E6%A0%B7%E5%AD%90.png" width="33%" height="33%"/>
+<img src="http://7xsq1h.com1.z0.glb.clouddn.com/%E5%8A%A8%E6%80%81%E6%B8%B2%E6%9F%936%E5%BC%A0%E5%9B%BE%E7%89%87%E6%97%B6%E5%80%99%E7%9A%84%E6%A0%B7%E5%AD%90.png" width="33%" height="33%"/>
 </p>
 
 
