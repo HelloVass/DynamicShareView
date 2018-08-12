@@ -50,7 +50,7 @@
 <img src="http://7xsq1h.com1.z0.glb.clouddn.com/%E5%8A%A8%E6%80%81%E6%B8%B2%E6%9F%937%E5%BC%A0%E5%9B%BE%E7%89%87%E6%97%B6%E5%80%99%E7%9A%84%E6%A0%B7%E5%AD%90.gif" width="33%" height="33%"/>
 </p>
 
-> PS:因为 7 张图的高度已经超过了屏幕的高度，所以用一个 ScrollView 包裹起来，可以上下滑动，以看到完整的图片
+> PS:因为 7 张图的高度已经超过了屏幕的高度，所以 ImageView 使用矩阵进行了缩放，导致图片看起来被**压缩**了。如果想要 fix 这个 bug，需要使用 BigImageView 类似的长图加载库来显示。
 
 
 ## More
