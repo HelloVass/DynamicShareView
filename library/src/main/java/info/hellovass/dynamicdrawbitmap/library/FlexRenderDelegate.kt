@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.android.flexbox.FlexboxLayout
-import info.hellovass.dynamicdrawbitmap.library.ext.*
+import info.hellovass.dynamicdrawbitmap.library.ext.coverCount
+import info.hellovass.dynamicdrawbitmap.library.ext.getScreenWidth
+import info.hellovass.dynamicdrawbitmap.library.ext.layout
+import info.hellovass.dynamicdrawbitmap.library.ext.spacing
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 

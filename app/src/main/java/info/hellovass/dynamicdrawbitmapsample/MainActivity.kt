@@ -22,10 +22,10 @@ class MainActivity : AppCompatActivity() {
         ShareViewImpl(this, FlexRenderDelegate(this))
                 .getLocalPath()
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { it ->
+                .subscribe { localImagePath ->
 
                     Glide.with(this)
-                            .load(File(it))
+                            .load(File(localImagePath))
                             .into(ivTest)
                 }
     }

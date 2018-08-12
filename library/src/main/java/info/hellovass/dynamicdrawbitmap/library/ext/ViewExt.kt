@@ -2,7 +2,6 @@ package info.hellovass.dynamicdrawbitmap.library.ext
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.graphics.Color
 import android.view.View
 
 /**
