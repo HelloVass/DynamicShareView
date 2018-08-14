@@ -8,10 +8,7 @@
         android:id="@+id/flexboxLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:dividerDrawableHorizontal="@drawable/divider_horizontal"
         app:flexDirection="row"
-        app:flexWrap="wrap"
-        app:justifyContent="space_between"
-        app:showDividerHorizontal="middle" />
+        app:flexWrap="wrap" />
 
 </FrameLayout>
