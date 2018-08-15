@@ -10,6 +10,7 @@
 - RxJava&RxAndroid（2.x版本），懒得介绍系列
 - Glide（4.x版本），懒得介绍系列
 - [FlexboxLayout](https://github.com/google/flexbox-layout), 在 sample 用来实现不规则图片墙的效果
+- ZXing（3.x版本）, 懒得介绍系列，将生成二维码的部分封装成了 QRCodeEncoder（放心，边距问题不存在的）
 
 # Thanks
 [超级无敌可爱你妈棒棒糖ok的雾聚dalao](https://fogdong.github.io/)的微博相册日常作为超强有力的数据来源支撑！
