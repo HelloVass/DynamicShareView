@@ -1,17 +1,20 @@
 package info.hellovass.dynamicdrawbitmap.library.core
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.flexbox.FlexboxLayout
 import info.hellovass.dynamicdrawbitmap.library.R
 import info.hellovass.dynamicdrawbitmap.library.ext.dp2px
 import info.hellovass.dynamicdrawbitmap.library.imageloader.GlideLoader
 import info.hellovass.dynamicdrawbitmap.library.imageloader.ImageLoader
+import info.hellovass.dynamicdrawbitmap.library.imageloader.WatermarkTransformation
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import jp.wasabeef.glide.transformations.BlurTransformation
 
 class CoversRedner(private val context: Context) {
 
@@ -65,9 +68,8 @@ class CoversRedner(private val context: Context) {
 
         for (index in 0 until coverCount) {
 
-            val imageView = ImageView(context).apply {
+            val target = ImageView(context).apply {
                 scaleType = ImageView.ScaleType.CENTER_CROP
-                setBackgroundColor(Color.GRAY)
             }
 
             val lp = FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT,
@@ -78,26 +80,37 @@ class CoversRedner(private val context: Context) {
                         context.dp2px(1.0F),
                         context.dp2px(1.0F)
                 )
-
                 flexGrow = 1.0F
             }
 
-            flexboxLayout.addView(imageView, lp)
+            flexboxLayout.addView(target, lp)
         }
     }
 
     private fun renderCovers() {
 
         for (position in 0 until coverCount) {
+
             val target = flexboxLayout.getChildAt(position) as ImageView
-            val bitmap = imageLoader.loadImage(context, repo.covers()[position])
-            target.setImageBitmap(bitmap)
+            val bitmap = imageLoader.loadImage(context, repo.covers()[position], needBlur(position))
+
+            target.apply {
+                setImageBitmap(bitmap)
+            }
         }
     }
 
-    private fun inflate(): View {
+    private fun needBlur(position: Int): RequestOptions {
 
-        return LayoutInflater.from(context).inflate(R.layout.layout_covers, null)
+        return if (position == CoversRedner.MAX_SIZE - 1) {
+            RequestOptions().transforms(BlurTransformation(),
+                    WatermarkTransformation(R.drawable.ic_more))
+        } else {
+            RequestOptions.centerCropTransform()
+        }
     }
+
+    @SuppressLint("InflateParams")
+    private fun inflate(): View = LayoutInflater.from(context).inflate(R.layout.layout_covers, null)
 }
 

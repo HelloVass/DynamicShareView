@@ -37,6 +37,7 @@ dependencies {
     // glide
     api 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    api 'jp.wasabeef:glide-transformations:3.3.0'
     // zxing
     api 'com.google.zxing:core:3.3.3'
     // flexbox

@@ -1,5 +1,6 @@
 package info.hellovass.dynamicdrawbitmap.library.core
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.view.LayoutInflater
@@ -84,5 +85,6 @@ class InfoRender(private val context: Context) {
         }.subscribeOn(Schedulers.io())
     }
 
+    @SuppressLint("InflateParams")
     private fun inflate(): View = LayoutInflater.from(context).inflate(R.layout.layout_userinfo, null)
 }

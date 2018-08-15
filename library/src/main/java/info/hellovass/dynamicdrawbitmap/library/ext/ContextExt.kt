@@ -29,6 +29,6 @@ internal fun Context.dp2px(dp: Float): Int {
  */
 internal fun Context.iconfont(): Typeface {
 
-    return Typeface.createFromAsset(assets, "iconfont")
+    return Typeface.createFromAsset(assets, "iconfont.ttf")
 }
 

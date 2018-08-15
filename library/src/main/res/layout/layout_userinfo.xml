@@ -11,9 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:textSize="14sp"
-        tools:text="手中抓住了未来" />
+        tools:text=" Toa|n-buna|NERU|nano|神威がくぽ|全职高手|LOTR|开花|戴涵|Ed Sheeran|Fall Out Boy|偶尔cos|希魔|守望先锋|邦邦|音游狗" />
 
     <LinearLayout
         android:id="@+id/llUserInfo"
@@ -76,7 +78,7 @@
             android:id="@+id/tvLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/icons"
+            android:text="@string/ic_siane"
             android:textColor="@android:color/holo_red_light"
             android:textSize="20sp" />
 
