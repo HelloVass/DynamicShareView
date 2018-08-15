@@ -1,6 +1,7 @@
 package info.hellovass.dynamicdrawbitmap.library.ext
 
 import android.content.Context
+import android.graphics.Typeface
 import android.util.TypedValue
 
 
@@ -21,5 +22,13 @@ internal fun Context.dp2px(dp: Float): Int {
 
     return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.displayMetrics)
             .toInt()
+}
+
+/**
+ * 获取字体图标
+ */
+internal fun Context.iconfont(): Typeface {
+
+    return Typeface.createFromAsset(assets, "iconfont")
 }
 

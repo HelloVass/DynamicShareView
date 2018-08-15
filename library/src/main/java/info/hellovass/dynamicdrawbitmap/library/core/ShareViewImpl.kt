@@ -26,7 +26,7 @@ class ShareViewImpl(private val context: Context, private val IRender: IRender) 
 
         return Observable.create { emitter ->
             try {
-                // step1，测量
+                // step1，测量和摆放
                 view.measureMually(width = context.screenWidth())
                 view.layout(0, 0, view.measuredWidth, view.measuredHeight)
 

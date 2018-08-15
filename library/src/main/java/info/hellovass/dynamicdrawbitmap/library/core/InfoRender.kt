@@ -7,6 +7,7 @@ import android.view.View
 import com.bumptech.glide.request.RequestOptions
 import info.hellovass.dynamicdrawbitmap.library.R
 import info.hellovass.dynamicdrawbitmap.library.ext.dp2px
+import info.hellovass.dynamicdrawbitmap.library.ext.iconfont
 import info.hellovass.dynamicdrawbitmap.library.imageloader.GlideLoader
 import info.hellovass.dynamicdrawbitmap.library.imageloader.ImageLoader
 import info.hellovass.dynamicdrawbitmap.library.qrcode.QRCodeEncoder
@@ -65,6 +66,11 @@ class InfoRender(private val context: Context) {
                             height = context.dp2px(128.0F)
                     )
                     setImageBitmap(bitmap)
+                }
+
+                // logo
+                rlInfo.tvLogo.apply {
+                    typeface = context.iconfont()
                 }
 
                 // 出处

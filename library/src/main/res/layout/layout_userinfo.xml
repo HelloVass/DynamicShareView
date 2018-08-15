@@ -29,7 +29,7 @@
         <View
             android:layout_width="72dp"
             android:layout_height="1dp"
-            android:background="@android:color/black" />
+            android:background="@android:color/darker_gray" />
 
         <ImageView
             android:id="@+id/ivAvatar"
@@ -67,13 +67,28 @@
         android:layout_alignLeft="@id/ivQRCode"
         android:layout_alignStart="@id/ivQRCode"
         android:layout_below="@id/ivQRCode"
+        android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icons"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/tvFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             tools:text="来自@雾雾glu" />
 
     </LinearLayout>
