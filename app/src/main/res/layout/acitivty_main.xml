@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:scrollbars="vertical">
 
-    <info.hellovass.dynamicdrawbitmap.library.widgets.BigImageView
-        android:id="@+id/bivTest"
+    <ImageView
+        android:id="@+id/ivTest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY" />
 
-</LinearLayout>
+</ScrollView>
 

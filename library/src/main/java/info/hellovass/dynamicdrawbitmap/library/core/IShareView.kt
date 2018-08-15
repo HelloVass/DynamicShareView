@@ -1,4 +1,4 @@
-package info.hellovass.dynamicdrawbitmap.library
+package info.hellovass.dynamicdrawbitmap.library.core
 
 import io.reactivex.Observable
 

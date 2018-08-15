@@ -8,6 +8,10 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
 
+interface IBigImageView {
+    fun loadImage(filePath: String?)
+}
+
 /**
  * support display long image
  */
