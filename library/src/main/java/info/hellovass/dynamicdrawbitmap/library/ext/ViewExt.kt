@@ -20,3 +20,11 @@ internal fun View.createBitmap(bgColor: Int): Bitmap {
     // 完事
     return bitmap
 }
+
+internal fun View.measureMually(width: Int = (1 shl 30) - 1, height: Int = (1 shl 30) - 1) {
+    val widthMeasureSpec = View.MeasureSpec.makeMeasureSpec(width,
+            View.MeasureSpec.EXACTLY)
+    val heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height,
+            View.MeasureSpec.AT_MOST)
+    this.measure(widthMeasureSpec, heightMeasureSpec)
+}

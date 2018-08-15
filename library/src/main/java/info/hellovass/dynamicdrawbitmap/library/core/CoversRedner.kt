@@ -1,45 +1,47 @@
-package info.hellovass.dynamicdrawbitmap.library
+package info.hellovass.dynamicdrawbitmap.library.core
 
 import android.content.Context
-import android.graphics.Bitmap
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
-import com.bumptech.glide.Glide
 import com.google.android.flexbox.FlexboxLayout
-import info.hellovass.dynamicdrawbitmap.library.ext.coverCount
+import info.hellovass.dynamicdrawbitmap.library.R
 import info.hellovass.dynamicdrawbitmap.library.ext.dp2px
+import info.hellovass.dynamicdrawbitmap.library.imageloader.GlideLoader
+import info.hellovass.dynamicdrawbitmap.library.imageloader.ImageLoader
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 
-/**
- * 默认的渲染器
- */
-class FlexRenderDelegate(internal val context: Context) : RenderDelegate {
-
-    internal val flexboxLayout: FlexboxLayout
-
-    internal val repo: IRepo = RepoImpl()
+class CoversRedner(private val context: Context) {
 
     companion object {
-        const val MAX_SIZE = 20
+        // 最大图片数
+        const val MAX_SIZE = 7
     }
 
-    init {
-        val container = LayoutInflater.from(context).inflate(R.layout.layout_container, null)
-        flexboxLayout = container.findViewById(R.id.flexboxLayout)
+    private val flexboxLayout: FlexboxLayout by lazy {
+        inflate() as FlexboxLayout
     }
 
-    override fun getLayoutResId(): Int = R.layout.layout_container
+    private val imageLoader: ImageLoader by lazy {
+        GlideLoader()
+    }
 
-    override fun render(): Observable<View> {
+    private val repo: CoversRepo by lazy {
+        CoversRepo()
+    }
+
+    private val coverCount by lazy {
+        Math.min(repo.covers().size, CoversRedner.MAX_SIZE)
+    }
+
+    fun render(): Observable<View> {
 
         return Observable.create<View> { emitter ->
             try {
-                // 如果有封面，清空
-                clearIfNeeded(flexboxLayout)
+                // 如果有子View，清空
+                clear()
                 // 添加封面
                 addCovers()
                 // 渲染封面
@@ -52,10 +54,10 @@ class FlexRenderDelegate(internal val context: Context) : RenderDelegate {
         }.subscribeOn(Schedulers.io())
     }
 
-    private fun clearIfNeeded(container: ViewGroup) {
+    private fun clear() {
 
-        if (container.childCount > 0) {
-            container.removeAllViews()
+        if (flexboxLayout.childCount > 0) {
+            flexboxLayout.removeAllViews()
         }
     }
 
@@ -71,10 +73,10 @@ class FlexRenderDelegate(internal val context: Context) : RenderDelegate {
             val lp = FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT,
                     FlexboxLayout.LayoutParams.WRAP_CONTENT).apply {
 
-                setMargins(dp2px(1.0F),
-                        dp2px(1.0F),
-                        dp2px(1.0F),
-                        dp2px(1.0F)
+                setMargins(context.dp2px(1.0F),
+                        context.dp2px(1.0F),
+                        context.dp2px(1.0F),
+                        context.dp2px(1.0F)
                 )
 
                 flexGrow = 1.0F
@@ -88,22 +90,14 @@ class FlexRenderDelegate(internal val context: Context) : RenderDelegate {
 
         for (position in 0 until coverCount) {
             val target = flexboxLayout.getChildAt(position) as ImageView
-            val bitmap = loadImage(repo.covers()[position])
-            loadCover(target, bitmap)
+            val bitmap = imageLoader.loadImage(context, repo.covers()[position])
+            target.setImageBitmap(bitmap)
         }
     }
 
-    private fun loadCover(target: ImageView, bitmap: Bitmap) {
+    private fun inflate(): View {
 
-        target.setImageBitmap(bitmap)
-    }
-
-    private fun loadImage(imageUrl: String): Bitmap {
-
-        return Glide.with(context).asBitmap().load(imageUrl)
-                .submit()
-                .get()
+        return LayoutInflater.from(context).inflate(R.layout.layout_covers, null)
     }
 }
-
 

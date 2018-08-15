@@ -25,7 +25,7 @@
 
 
 # 效果图
-> PS: 基于 FlexboxLayout 实现了一个不规则的照片墙，你也可以仿照 [FlexRenderDelegate](https://github.com/HelloVass/DynamicShareView/blob/master/library/src/main/java/info/hellovass/dynamicdrawbitmap/library/FlexRenderDelegate.kt)
+> PS: 基于 FlexboxLayout 实现了一个不规则的照片墙，你也可以仿照 [FlexRenderDelegate](https://github.com/HelloVass/DynamicShareView/blob/master/library/src/main/java/info/hellovass/dynamicdrawbitmap/library/DefaultIRender.kt)
 > 的示例，根据自己的实际业务需求实现自己的渲染器。
 
 

@@ -1,9 +1,9 @@
-package info.hellovass.dynamicdrawbitmap.library
+package info.hellovass.dynamicdrawbitmap.library.core
 
 import android.view.View
 import io.reactivex.Observable
 
-interface RenderDelegate {
+interface IRender {
 
     fun getLayoutResId(): Int
 
