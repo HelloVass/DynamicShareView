@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">library</string>
-    <string name="ic_siane">&#xe60f;</string>
+    <string name="ic_siane">&#xe608;</string>
+    <string name="ic_qrcode">&#xe628;</string>
 </resources>

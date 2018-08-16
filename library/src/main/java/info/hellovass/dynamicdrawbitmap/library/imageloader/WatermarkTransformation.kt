@@ -3,12 +3,14 @@ package info.hellovass.dynamicdrawbitmap.library.imageloader
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
-import android.graphics.drawable.Drawable
+import android.text.TextPaint
 import com.bumptech.glide.load.Key
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
+import info.hellovass.dynamicdrawbitmap.library.ext.iconfont
+import info.hellovass.dynamicdrawbitmap.library.ext.sp2px
 import jp.wasabeef.glide.transformations.BitmapTransformation
-import jp.wasabeef.glide.transformations.internal.Utils
 import java.security.MessageDigest
 
 /**
@@ -22,46 +24,48 @@ class WatermarkTransformation(private val watermarkId: Int) : BitmapTransformati
 
         private const val ID: String =
                 "info.hellovass.dynamicdrawbitmap.library.imageloader.$VERSDON"
-
-        private val paint: Paint = Paint().apply {
-
-            flags = Paint.ANTI_ALIAS_FLAG
-            style = Paint.Style.FILL
-        }
     }
+
+    // 原图的尺寸
+    private lateinit var srcSize: Pair<Int, Int>
+
+    // 画笔
+    private lateinit var textPaint: TextPaint
 
     override fun transform(context: Context, pool: BitmapPool, toTransform: Bitmap, outWidth: Int, outHeight: Int): Bitmap {
 
-        // 原图的宽高
-        val width = toTransform.width
-        val height = toTransform.height
-
         // 缓存
-        val bitmap = pool.get(width, height, Bitmap.Config.ARGB_8888)
+        val cachedBitmap = pool.get(toTransform.width, toTransform.height,
+                Bitmap.Config.ARGB_8888)
 
-        // 水印
-        val watermarkDrawable: Drawable =
-                Utils.getMaskDrawable(context.applicationContext, watermarkId)
+        // 原图的宽高
+        srcSize = Pair(toTransform.width, toTransform.height)
 
-        // 水印的宽高
-        val watermarkWidth = watermarkDrawable.intrinsicWidth
-        val watermarkHeight = watermarkDrawable.intrinsicHeight
+        // 画笔初始化
+        textPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
 
-        // 计算出水印的坐标
-        val left: Int = (width - watermarkWidth) / 2
-        val top: Int = (height - watermarkHeight) / 2
-        val right: Int = left + watermarkWidth
-        val bottom: Int = top + watermarkHeight
+            color = Color.BLACK
 
-        // 先画原图
-        val canvas = Canvas(bitmap)
-        canvas.drawBitmap(toTransform, 0.0F, 0.0F, paint)
+            typeface = context.iconfont()
 
-        // 再画水印
-        watermarkDrawable.setBounds(left, top, right, bottom)
-        watermarkDrawable.draw(canvas)
+            isDither = true
 
-        return bitmap
+            style = Paint.Style.FILL
+
+            textSize = context.sp2px(18.0F)
+        }
+
+        // 创建 canvas
+        val canvas = Canvas(cachedBitmap)
+
+        // step1.绘制原图
+        drawSrc(canvas, toTransform)
+
+        // step2.绘制水印
+        drawWatermark(canvas, context.getString(watermarkId))
+
+        // 返回 cached Bitmap
+        return cachedBitmap
     }
 
     override fun equals(other: Any?): Boolean {
@@ -79,4 +83,23 @@ class WatermarkTransformation(private val watermarkId: Int) : BitmapTransformati
 
         messageDigest.update((ID + watermarkId).toByteArray(Key.CHARSET))
     }
+
+    private fun drawSrc(canvas: Canvas, toTransform: Bitmap) {
+
+        canvas.drawBitmap(toTransform, 0.0F, 0.0F, null)
+    }
+
+    private fun drawWatermark(canvas: Canvas, text: String = "\uE614") {
+
+        fun calLeft(): Float = srcSize.first / 2.0F - textPaint.measureText(text) / 2.0F
+
+        fun calTop(): Float {
+            val fontMetrics = textPaint.fontMetrics
+            return srcSize.second / 2.0F + (fontMetrics.descent - fontMetrics.ascent) / 2.0F - fontMetrics.bottom
+        }
+
+        canvas.drawText(text, calLeft(), calTop(), textPaint)
+    }
 }
+
+

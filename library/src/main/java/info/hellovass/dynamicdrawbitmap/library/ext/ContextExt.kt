@@ -32,3 +32,11 @@ internal fun Context.iconfont(): Typeface {
     return Typeface.createFromAsset(assets, "iconfont.ttf")
 }
 
+/**
+ * 将 sp 转为 px
+ */
+internal fun Context.sp2px(sp: Float): Float {
+
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, resources.displayMetrics)
+}
+
