@@ -102,6 +102,7 @@ class CoversRedner(private val context: Context) {
 
     private fun needBlur(position: Int): RequestOptions {
 
+        // 如果是最后一张图，进行高斯模糊和水印处理
         return if (position == CoversRedner.MAX_SIZE - 1) {
             RequestOptions().transforms(BlurTransformation(),
                     WatermarkTransformation(R.drawable.ic_more))
