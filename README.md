@@ -35,8 +35,18 @@
 
 # 效果图
 
+稍稍展示一下默认渲染器渲染的效果，flex 布局确实蛮好用的...
+
+## 竖屏
+
 <p align="center">
-<img src="http://7xsq1h.com1.z0.glb.clouddn.com/dynamic_share_image593581044.jpg" width="55%" height="55%"/>
+<img src="http://7xsq1h.com1.z0.glb.clouddn.com/dynamic_share_image593581044.jpg" width="50%" height="50%"/>
+</p>
+
+## 横屏
+
+<p align="center">
+<img src="http://7xsq1h.com1.z0.glb.clouddn.com/dynamic_share_image659610247.jpg" width="50%" height="50%"/>
 </p>
 
 ## 介绍
