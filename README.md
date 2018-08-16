@@ -13,12 +13,11 @@
 - [FlexboxLayout](https://github.com/google/flexbox-layout), 在 sample 用来实现不规则图片墙的效果
 - ZXing（3.x版本）, 懒得介绍系列，将生成二维码的部分封装成了 QRCodeEncoder（放心，边距问题不存在的）
 - [transformations](https://github.com/wasabeef/glide-transformations),懒得介绍系列，用来实现各种变换
+- [阿里的 iconfont](http://www.iconfont.cn/)，让我这种懒人终于不用去下载图片了，还不是美滋滋
 
 # Thanks
+
 [超级无敌可爱你妈棒棒糖ok的雾聚dalao](https://fogdong.github.io/)的微博相册日常作为超强有力的数据来源支撑！
-
-> PS:雾聚 dalao 还在找实习中（node方向），有兴趣的童鞋可以py她
-
 
 # 使用
 
@@ -37,7 +36,7 @@
 # 效果图
 
 <p align="center">
-<img src="http://7xsq1h.com1.z0.glb.clouddn.com/dynamic_share_image1913513551.jpg" width="33%" height="33%"/>
+<img src="http://7xsq1h.com1.z0.glb.clouddn.com/dynamic_share_image593581044.jpg" width="55%" height="55%"/>
 </p>
 
 ## 介绍
@@ -51,6 +50,7 @@
 - iconfont 的基操
 - 如何正确地手动 measure、layout View
 - 自定义 Glide 的变换，通过多重变换实现高斯模糊、水印
+- canvas 结合 iconfont，通过 drawText 的方式来绘制水印
 - ...
 
 
