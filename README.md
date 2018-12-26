@@ -40,13 +40,13 @@
 ## 竖屏
 
 <p align="center">
-<img src="http://7xsq1h.com1.z0.glb.clouddn.com/dynamic_share_image593581044.jpg" width="50%" height="50%"/>
+<img src="https://hellovass-blog-1257365569.cos.ap-shanghai.myqcloud.com/dynamic_share_image593581044.jpg" width="50%" height="50%"/>
 </p>
 
 ## 横屏
 
 <p align="center">
-<img src="http://7xsq1h.com1.z0.glb.clouddn.com/dynamic_share_image659610247.jpg" width="50%" height="50%"/>
+<img src="https://hellovass-blog-1257365569.cos.ap-shanghai.myqcloud.com/dynamic_share_image659610247.jpg" width="50%" height="50%"/>
 </p>
 
 ## 介绍
